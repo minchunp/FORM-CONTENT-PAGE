@@ -555,7 +555,7 @@
          const UPLOAD_API_URL = "https://api.mediccare.vn/upload/image"; // Endpoint chính xác từ code của bạn
          const API_TOKEN =
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjZmNGQ0NWQ0NTk2Y2NjOGZjZGNjMDEyIiwidG9rZW5fdHlwZSI6MCwicm9sZSI6IlRFTEVTQUxFIiwiaWF0IjoxNzQ0MjcyNzIyLCJleHAiOjE4NzM4NzI3MjJ9.S8TdrhGUy1QM1ZiU2svQWDVe9rQkNEfLrloATg8WSgU";
-         const SUBMIT_API_URL = "https://dhsyccqor.datadex.vn/webhook/auto-update";
+         const SUBMIT_API_URL = "https://dhsyccqor.datadex.vn/webhook/auto-update-post";
 
          // Hiển thị loading
          function showLoading() {
@@ -776,20 +776,10 @@
 
                try {
                   // Thử gửi yêu cầu đến API
-                  const response = await fetch(SUBMIT_API_URL, {
+                  fetch(SUBMIT_API_URL, {
                      method: "POST",
-                     headers: {
-                        "Content-Type": "application/json",
-                     },
                      body: JSON.stringify(formData),
                   });
-
-                  if (!response.ok) {
-                     throw new Error(`Network response was not ok: ${response.status}`);
-                  }
-
-                  const data = await response.json();
-                  console.log("Submit success:", data);
                   setApiStatus(true);
                } catch (apiError) {
                   // Nếu API không hoạt động, hiển thị dữ liệu sẽ được gửi
